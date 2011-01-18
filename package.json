@@ -1,0 +1,39 @@
+{
+  "name":         "fusion",
+  "description":  "Merge Files into Javascript Namespace",
+  "version":      "0.0.1",
+  "keywords":     ["jst", "templates", "namespace", "merge", "fusion"],
+  "homepage":     "http://deck.cc/",
+  "author":       "Nik Graf @nikgraf",
+  "licenses":     [{
+    "type":       "MIT",
+    "url":        "http://github.com/deck/fusion/raw/master/LICENSE"
+  }],
+  "engines":      {
+    "node":       ">=0.3.2"
+  },
+  "directories" : {
+    "lib" : "./lib"
+  },
+  "main" : "./lib/fusion",
+  "bin":          {
+    "fusion": "./bin/fusion"
+  },
+  "dependencies": {
+    "watch": "0.0.3",
+    "yaml":  "0.1.1"
+  },
+  "devDependencies": {
+    "coffee-script": ">= 1.0.0",
+    "vows": "0.5.3"
+  },
+  "engines": ["node"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deck/fusion.git"
+  },
+  "bugs": {
+    "url": "http://github.com/deck/fusion/issues"
+  }
+}
+
