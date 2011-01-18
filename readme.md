@@ -4,6 +4,10 @@ Fusion provides a way to merge multiple Files (usually JavaScript Templates) int
 
 Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/) Team. I was able to reuse several parts of their code.
 
+## Installation
+
+    npm install fusion
+
 ## How to use
 
 You can run the script to compile templates via
