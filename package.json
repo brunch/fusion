@@ -20,7 +20,7 @@
     "fusion": "./bin/fusion"
   },
   "dependencies": {
-    "watch": "0.0.3",
+    "watch": "0.3.0",
     "yaml":  "0.1.1"
   },
   "devDependencies": {
