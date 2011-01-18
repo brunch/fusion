@@ -8,7 +8,7 @@ Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/)
 
 You can run the script to compile templates via
 
-  fusion [options] [<directory>]
+    fusion [options] [<directory>]
 
 Optional use --watch to watch changes in the given directory.
 You don't need to set a directory. You can leave it out and use
