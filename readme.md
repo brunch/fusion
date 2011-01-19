@@ -10,6 +10,8 @@ Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/)
 
 ## How to use
 
+### Command-line
+
 You can run the script to compile templates via
 
     fusion [options] [<directory>]
@@ -36,9 +38,22 @@ set path of settings file
 
     --config [FILE]
 
-### Examples
+#### Example
 
     fusion --watch --config fusion_settings.yaml
+
+### Settings file
+
+All options except "--watch" and "--config" can be set in the settings file.
+Unless --config is defined the script will search for "settings.yaml"
+in the current directory.
+
+Possible settings are
+
+* namespace
+* templateExtension
+* input
+* output
 
 ### Demo
 
@@ -60,6 +75,7 @@ Feel free to make a pull request or contact me on Twitter @nikgraf.
 
 ## TODO
 
+* run fusion without existing settings.yaml file
 * add github page
 * improve monitore preformance
 * improve regex in createTemplateObject to work with dotfiles and add option ignoreDotFiles
