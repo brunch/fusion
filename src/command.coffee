@@ -11,7 +11,7 @@ helpers     = require './helpers'
 
 # The list of all the valid option flags that 'fusion' knows how to handle.
 SWITCHES = [
-  ['-v', '--version',                     'display CoffeeScript version']
+  ['-v', '--version',                     'display fusion version']
   ['-h', '--help',                        'display this help message']
   ['-i', '--input [DIR]',                 'set input path of templates']
   ['-o', '--output [FILE]',               'set output path of templates']
