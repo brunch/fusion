@@ -93,12 +93,12 @@ Feel free to make a pull request or contact me on Twitter @nikgraf.
 
 ## Thanks
 
-It was inspired by [Jammit](http://documentcloud.github.com/jammit/)'s templating functionality. Since Jammit doesn't support to watch files via command-line, it's hard to use for development without RubyOnRails.
+It was inspired by [Jammit](http://documentcloud.github.com/jammit/)'s templating functionality. Since Jammit doesn't offer file watching via command-line, it is somewhat hard to use for development if you are not on a RubyOnRails stack.
 
-Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/) Team. I was able to reuse several parts of their code.
+Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/) Team. Some parts of fusion like the command line functionality and the optparser were re-used from its codebase.
 
 ## TODO
 
-* watch issues with textmate
+* watch somehow does not work with Textmate - any pointers?
 * add github page
-* improve regex in createTemplateObject to work with dotfiles and add option ignoreDotFiles
+* improve regex in createTemplateObject to work with dotfiles and add option to ignoreDotFiles - tmp and swp files can cause troubles
