@@ -1,8 +1,26 @@
 # Fusion
 
-Fusion provides a way to merge multiple Files (usually JavaScript Templates) into one namespace. It was inspired by [Jammit](http://documentcloud.github.com/jammit/). Since Jammit doesn't support to watch files via command-line, it's not usable for development except RubyOnRails.
+Fusion is a simple tool to merge multiple JavaScript templates (mustache, handlebars, jquery-tmpl, …) into one namespaced template object.
 
-Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/) Team. I was able to reuse several parts of their code.
+## What is fusion good for?
+
+You might have noticed that using script tags to manage your JavaScript templates can become quite a mess if you have a bunch of them. Therefore splitting them into several files is a good idea. Fusion helps you bring them back together in one neatly organized namespace.
+
+For example if you have a directory structure like
+
+    templates/home.html
+    templates/notes/overview.html
+    templates/notes/detail.html
+
+fusion would compile it to
+
+    (function(){
+      window.templates = {};
+      window.templates.home = '<content of home.html>';
+      window.templates.notes = {};
+      window.templates.notes.overview = '<content of overview.html>';
+      window.templates.notes.detail = '<content of detail.html>';
+    })();
 
 ## Installation
 
@@ -72,6 +90,12 @@ Feel free to make a pull request or contact me on Twitter @nikgraf.
 ### Tests
 
     vows --spec test/*.coffee
+
+## Thanks
+
+It was inspired by [Jammit](http://documentcloud.github.com/jammit/)'s templating functionality. Since Jammit doesn't support to watch files via command-line, it's hard to use for development without RubyOnRails.
+
+Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/) Team. I was able to reuse several parts of their code.
 
 ## TODO
 
