@@ -103,7 +103,7 @@ Feel free to make a pull request or contact me on Twitter @nikgraf.
 
 It was inspired by [Jammit](http://documentcloud.github.com/jammit/)'s templating functionality. Since Jammit doesn't offer file watching via command-line, it's a bit hard to use for development if you are not on a RubyOnRails stack.
 
-Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/) Team. Some parts of fusion were re-used from its codebase.
+Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/) Team. We were able to re-use some parts like the optparser.
 
 ## TODO
 
