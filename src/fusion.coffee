@@ -83,7 +83,7 @@ exports.writeOutputFile = (callback) ->
 # Check for changes on our watched direcotry and remerge all files if something changed.
 # This could be improved by updating only the files which changed.
 exports.watch = ->
-  watcher.createMonitor(exports.settings.input, (monitor) ->
+  watcher.createMonitor(exports.settings.input, {persistent: true, interval: 50}, (monitor) ->
     monitor.on("changed", (file) ->
       resetGlobals()
       exports.mergeFiles()

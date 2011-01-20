@@ -75,6 +75,6 @@ Feel free to make a pull request or contact me on Twitter @nikgraf.
 
 ## TODO
 
+* watch issues with textmate
 * add github page
-* improve monitore preformance
 * improve regex in createTemplateObject to work with dotfiles and add option ignoreDotFiles
