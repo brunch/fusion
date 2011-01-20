@@ -7,7 +7,7 @@ helpers   = require './helpers'
 watcher   = require 'watch'
 
 # The current fusion version number.
-exports.VERSION = '0.0.2'
+exports.VERSION = '0.0.3'
 
 # Exportet objects share by several functions.
 # Output and Sources are public for future improvements on caching content.
