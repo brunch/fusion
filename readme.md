@@ -4,7 +4,7 @@ Fusion is a simple tool to merge multiple JavaScript templates (mustache, handle
 
 ## What is fusion good for?
 
-You might have noticed that using script tags to manage your JavaScript templates can become quite a mess if you have a bunch of them. It is a good idea to split them into several files. Fusion helps you bring them back together in one neatly organized namespace.
+You might have noticed that using script tags to manage your JavaScript templates can become quite a mess if you have a bunch of them. It's a good idea to split them into several files. Fusion helps you bring them back together in one neatly organized namespace.
 
 For example if you have a directory structure like
 
@@ -73,6 +73,14 @@ Possible settings are
 * input
 * output
 
+### Default Settings
+
+settings file: "settings.yaml"
+namespace: "window"
+template extension: "html"
+input directory: "templates"
+output file: "templates.js"
+
 ### Demo
 
 You can see it running by switching to demo folder and run it with watch option.
@@ -93,9 +101,9 @@ Feel free to make a pull request or contact me on Twitter @nikgraf.
 
 ## Thanks
 
-It was inspired by [Jammit](http://documentcloud.github.com/jammit/)'s templating functionality. Since Jammit doesn't offer file watching via command-line, it is somewhat hard to use for development if you are not on a RubyOnRails stack.
+It was inspired by [Jammit](http://documentcloud.github.com/jammit/)'s templating functionality. Since Jammit doesn't offer file watching via command-line, it's a bit hard to use for development if you are not on a RubyOnRails stack.
 
-Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/) Team. Some parts of fusion like the command line functionality and the optparser were re-used from its codebase.
+Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/) Team. Some parts of fusion were re-used from its codebase.
 
 ## TODO
 
