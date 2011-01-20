@@ -75,11 +75,11 @@ Possible settings are
 
 ### Default Settings
 
-settings file: "settings.yaml"
-namespace: "window"
-template extension: "html"
-input directory: "templates"
-output file: "templates.js"
+* settings file: "settings.yaml"
+* namespace: "window"
+* template extension: "html"
+* input directory: "templates"
+* output file: "templates.js"
 
 ### Demo
 
