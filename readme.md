@@ -4,7 +4,7 @@ Fusion is a simple tool to merge multiple JavaScript templates (mustache, handle
 
 ## What is fusion good for?
 
-You might have noticed that using script tags to manage your JavaScript templates can become quite a mess if you have a bunch of them. Therefore splitting them into several files is a good idea. Fusion helps you bring them back together in one neatly organized namespace.
+You might have noticed that using script tags to manage your JavaScript templates can become quite a mess if you have a bunch of them. It is a good idea to split them into several files. Fusion helps you bring them back together in one neatly organized namespace.
 
 For example if you have a directory structure like
 
