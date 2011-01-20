@@ -100,5 +100,6 @@ Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/)
 ## TODO
 
 * watch somehow does not work with Textmate - any pointers?
+* output file - mkdirs or warn if directory doesn't exist
 * add github page
 * improve regex in createTemplateObject to work with dotfiles and add option to ignoreDotFiles - tmp and swp files can cause troubles
