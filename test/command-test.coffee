@@ -17,3 +17,17 @@ vows.describe('loadSettingsFromFile').addBatch({
         templateExtension: 'html'
       }
 }).export module
+
+vows.describe('loadDefaultSettings').addBatch({
+  'when loading default settings':
+    topic: ->
+      command.loadDefaultSettings({})
+
+    'it should return a settings object with default values': (topic) ->
+      assert.deepEqual topic, {
+        input: 'templates',
+        output: 'templates.js',
+        namespace: 'window',
+        templateExtension: 'html'
+      }
+}).export module

@@ -75,7 +75,6 @@ Feel free to make a pull request or contact me on Twitter @nikgraf.
 
 ## TODO
 
-* run fusion without existing settings.yaml file
 * add github page
 * improve monitore preformance
 * improve regex in createTemplateObject to work with dotfiles and add option ignoreDotFiles

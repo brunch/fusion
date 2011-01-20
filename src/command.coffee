@@ -35,29 +35,38 @@ exports.run = ->
   opts = parseOptions()
   return usage() if opts.help
   return version() if opts.version
-  exports.loadSettingsFromFile(opts.config)
-  exports.loadSettingsFromArguments(opts)
+  settings = exports.loadSettingsFromFile(opts.config)
+  settings = exports.loadDefaultSettings(settings)
+  settings = exports.loadSettingsFromArguments(settings, opts)
   fusion.run(settings)
 
-# Load settings from a settings file or at least set some
-# reasonable defaults.
+# Load settings from a settings file if available.
 exports.loadSettingsFromFile = (settings_file) ->
   settings_file or= "settings.yaml"
-  settings = yaml.eval fs.readFileSync settings_file, 'utf8'
-  settings.namespace = "window" unless settings.namespace
-  settings.templateExtension = "html" unless settings.templateExtension
-  settings.input = "templates" unless settings.input
-  settings.output = "templates.js" unless settings.output
-  settings
+  try
+    stats = fs.statSync settings_file
+    currentSettings = yaml.eval fs.readFileSync(settings_file, 'utf8')
+  catch e
+    helpers.printLine "Couldn't find a settings file"
+    currentSettings = {}
+  currentSettings
+
+# Set some reasonable defaults if they haven't been defined.
+exports.loadDefaultSettings = (currentSettings) ->
+  currentSettings.namespace = "window" unless currentSettings.namespace
+  currentSettings.templateExtension = "html" unless currentSettings.templateExtension
+  currentSettings.input = "templates" unless currentSettings.input
+  currentSettings.output = "templates.js" unless currentSettings.output
+  currentSettings
 
 # Load settings from arguments.
-exports.loadSettingsFromArguments = (opts) ->
-  settings.namespace = opts.namespace if opts.namespace
-  settings.templateExtension = opts.templateExtension if opts.templateExtension
-  settings.input = opts.arguments[0] if opts.arguments[0]
-  settings.output = opts.output if opts.output
-  settings.watch = opts.watch if opts.watch
-  settings
+exports.loadSettingsFromArguments = (currentSettings, opts) ->
+  currentSettings.namespace = opts.namespace if opts.namespace
+  currentSettings.templateExtension = opts.templateExtension if opts.templateExtension
+  currentSettings.input = opts.arguments[0] if opts.arguments[0]
+  currentSettings.output = opts.output if opts.output
+  currentSettings.watch = opts.watch if opts.watch
+  currentSettings
 
 # Run optparser which was taken from Coffeescript 1.0.0
 parseOptions = ->
