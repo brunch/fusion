@@ -1,6 +1,6 @@
 # Fusion
 
-Fusion is a simple tool to merge multiple JavaScript templates (mustache, handlebars, jquery-tmpl, …) into one namespaced template object.
+Fusion is a simple tool to merge multiple JavaScript templates (mustache, handlebars, jquery-tmpl, …) into one namespaced template object. It also allows you to define your own precompiling functions.
 
 ## What is fusion good for?
 
@@ -56,6 +56,10 @@ set path of settings file
 
     --config [FILE]
 
+set path of the hook file
+
+    --hook [FILE]
+
 #### Example
 
     fusion --watch --config fusion_settings.yaml
@@ -72,6 +76,24 @@ Possible settings are
 * templateExtension
 * input
 * output
+* hook
+
+### Hooks file
+
+The hooks file provides a way to overwrite all public methods of fusion.
+Probably the most common case will be to overwrite the compileTemplate method.
+
+#### Example
+
+For example to use eco's precompiling for our templates we can create a file
+fusion_hooks.js which contains something like this
+
+    var eco = require('eco');
+    exports.compileTemplate = function(content) {
+      return eco.compile(content);
+    };
+
+Thats all you need to add proper precompiling to your templates.
 
 ### Default Settings
 
@@ -80,14 +102,15 @@ Possible settings are
 * template extension: "html"
 * input directory: "templates"
 * output file: "templates.js"
+* hook file: "fusion_hooks.js"
 
 ### Demo
 
 You can see it running by switching to demo folder and run it with watch option.
 You can change anything in the templates, refresh the index.html and see the new content.
 
-    cd demo
-    ./../bin/fusion --watch
+    cd demo/simple
+    ./../../bin/fusion --watch
 
 ## Development
 
@@ -107,6 +130,7 @@ Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/)
 
 ## TODO
 
+* !!! add tests for hooks
 * watch somehow does not work with Textmate - any pointers?
 * output file - mkdirs or warn if directory doesn't exist
 * add github page

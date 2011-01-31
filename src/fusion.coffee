@@ -63,12 +63,13 @@ exports.createTemplateObject = (content, source, directoryPrefix) ->
   namespace = source.replace directoryPrefix, ''
   namespace = namespace.match( new RegExp("^(.*)\.#{exports.settings.templateExtension}$"), 'a')[1]
   namespace = namespace.replace /\//g, '.'
-  "#{exports.settings.namespace}.#{namespace} = '#{content}';"
+  "#{exports.settings.namespace}.#{namespace} = #{content};"
 
 # Escapes newline and single quote characters cause they would break our generated js.
 exports.compileTemplate = (content) ->
   content = content.replace /\n/g, '\\n'
-  content.replace /'/g, '\\\''
+  content = content.replace /'/g, '\\\''
+  content = "'#{content}'"
 
 # Merging all the output commands in an anonymous function and writes it to a file
 exports.writeOutputFile = (callback) ->
@@ -83,7 +84,7 @@ exports.writeOutputFile = (callback) ->
 # Check for changes on our watched direcotry and remerge all files if something changed.
 # This could be improved by updating only the files which changed.
 exports.watch = ->
-  watcher.createMonitor(exports.settings.input, {persistent: true, interval: 50}, (monitor) ->
+  watcher.createMonitor(exports.settings.input, {persistent: true, interval: 500}, (monitor) ->
     monitor.on("changed", (file) ->
       resetGlobals()
       exports.mergeFiles()

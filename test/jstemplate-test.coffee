@@ -16,7 +16,7 @@ vows.describe('createTemplateObject').addBatch({
   'when building an namespace assigment':
     topic: ->
       fusion.settings = command.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
-      fusion.createTemplateObject("Sunshine", "templates/sunshine.html")
+      fusion.createTemplateObject("'Sunshine'", "templates/sunshine.html")
 
     'it should be a valid one': (topic) ->
       assert.equal topic, "window.templates.sunshine = 'Sunshine';"
@@ -65,11 +65,11 @@ vows.describe('compileTemplate').addBatch({
     topic: -> fusion.compileTemplate("Steve's Test")
 
     'it should escape them': (topic) ->
-      assert.equal topic, "Steve\\'s Test"
+      assert.equal topic, "'Steve\\'s Test'"
 
   'when compiling a template with newline chars':
     topic: -> fusion.compileTemplate("Test\nTest")
 
     'it should escape them': (topic) ->
-      assert.equal topic, "Test\\nTest"
+      assert.equal topic, "'Test\\nTest'"
 }).export module

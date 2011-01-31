@@ -4,7 +4,9 @@
 
 # External dependencies.
 fs          = require 'fs'
+path        = require 'path'
 yaml        = require 'yaml'
+_           = require 'underscore'
 fusion      = require './fusion'
 optparse    = require './optparse'
 helpers     = require './helpers'
@@ -15,6 +17,7 @@ SWITCHES = [
   ['-h', '--help',                        'display this help message']
   ['-i', '--input [DIR]',                 'set input path of templates']
   ['-o', '--output [FILE]',               'set output path of templates']
+  ['-k', '--hook [FILE]',                 'set path to a js file to hook in your own compile function']
   ['-n', '--namespace [VALUE]',           'set export namespace']
   ['-e', '--templateExtension [VALUE]',   'set extension of template files which should be compiled']
   ['-c', '--config [FILE]',               'set path of settings file']
@@ -38,6 +41,7 @@ exports.run = ->
   settings = exports.loadSettingsFromFile(opts.config)
   settings = exports.loadDefaultSettings(settings)
   settings = exports.loadSettingsFromArguments(settings, opts)
+  fusion = exports.loadHooks(settings.hook, fusion, opts)
   fusion.run(settings)
 
 # Load settings from a settings file if available.
@@ -57,6 +61,7 @@ exports.loadDefaultSettings = (currentSettings) ->
   currentSettings.templateExtension = "html" unless currentSettings.templateExtension
   currentSettings.input = "templates" unless currentSettings.input
   currentSettings.output = "templates.js" unless currentSettings.output
+  currentSettings.hook = "fusion_hooks.js" unless currentSettings.hook
   currentSettings
 
 # Load settings from arguments.
@@ -65,8 +70,21 @@ exports.loadSettingsFromArguments = (currentSettings, opts) ->
   currentSettings.templateExtension = opts.templateExtension if opts.templateExtension
   currentSettings.input = opts.arguments[0] if opts.arguments[0]
   currentSettings.output = opts.output if opts.output
+  currentSettings.hook = opts.hook if opts.hook
   currentSettings.watch = opts.watch if opts.watch
   currentSettings
+
+# Load fusion hooks
+exports.loadHooks = (hook_file, currentFusion, opts) ->
+  try
+    stats = fs.statSync hook_file
+    hook_file = path.join path.dirname(fs.realpathSync(hook_file)), hook_file
+    hooks = require(hook_file)
+    _.each hooks, (value, key) ->
+      currentFusion[key] = value
+  catch e
+    helpers.printLine "No hooks have been loaded."
+  fusion
 
 # Run optparser which was taken from Coffeescript 1.0.0
 parseOptions = ->
