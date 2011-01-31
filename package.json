@@ -1,7 +1,7 @@
 {
   "name":         "fusion",
   "description":  "Merge Files into Javascript Namespace",
-  "version":      "0.0.3",
+  "version":      "0.0.4",
   "keywords":     ["jst", "templates", "namespace", "merge", "fusion"],
   "homepage":     "http://deck.cc/",
   "author":       "Nik Graf @nikgraf",
@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "watch": "0.3.0",
-    "yaml":  "0.1.1"
+    "yaml":  "0.1.1",
+    "underscore": "1.1.4"
   },
   "devDependencies": {
     "coffee-script": ">= 1.0.0",
