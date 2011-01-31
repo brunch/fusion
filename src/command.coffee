@@ -78,7 +78,8 @@ exports.loadSettingsFromArguments = (currentSettings, opts) ->
 exports.loadHooks = (hook_file, currentFusion, opts) ->
   try
     stats = fs.statSync hook_file
-    hook_file = path.join path.dirname(fs.realpathSync(hook_file)), hook_file
+    fileName = path.basename(hook_file)
+    hook_file = path.join path.dirname(fs.realpathSync(hook_file)), fileName
     hooks = require(hook_file)
     _.each hooks, (value, key) ->
       currentFusion[key] = value
