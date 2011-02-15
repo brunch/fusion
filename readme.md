@@ -136,7 +136,6 @@ Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/)
 
 * create load settings method and export it - to run it easily without cli
 * optimize for eco
-* !!! add tests for hooks
 * watch somehow does not work with Textmate - any pointers?
 * output file - mkdirs or warn if directory doesn't exist
 * add github page

@@ -40,7 +40,7 @@ exports.run = ->
   settings = exports.loadSettingsFromFile(opts.config)
   settings = exports.loadDefaultSettings(settings)
   settings = exports.loadSettingsFromArguments(settings, opts)
-  fusion = exports.loadHooks(settings.hook, fusion, opts)
+  fusion = exports.loadHooks(settings.hook, fusion)
   fusion.run(settings)
 
 # Load settings from a settings file if available.
@@ -74,7 +74,7 @@ exports.loadSettingsFromArguments = (currentSettings, opts) ->
   currentSettings
 
 # Load fusion hooks
-exports.loadHooks = (hook_file, currentFusion, opts) ->
+exports.loadHooks = (hook_file, currentFusion) ->
   try
     stats = fs.statSync hook_file
     fileName = path.basename(hook_file)
@@ -84,7 +84,7 @@ exports.loadHooks = (hook_file, currentFusion, opts) ->
       currentFusion[key] = value
   catch e
     helpers.printLine "No hooks have been loaded."
-  fusion
+  currentFusion
 
 # Run optparser which was taken from Coffeescript 1.0.0
 parseOptions = ->

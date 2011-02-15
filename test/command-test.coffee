@@ -1,10 +1,13 @@
 require.paths.unshift __dirname + "/../src"
 
-vows = require('vows')
-assert = require('assert')
-command = require('command')
+vows    = require 'vows'
+assert  = require 'assert'
+command = require 'command'
+fusion  = require 'fusion'
 
-vows.describe('loadSettingsFromFile').addBatch(
+compileTemplate = fusion.compileTemplate
+
+vows.describe('command-line interface').addBatch(
   'when loading settings from a file':
     topic: ->
       command.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
@@ -16,9 +19,7 @@ vows.describe('loadSettingsFromFile').addBatch(
         namespace: 'window'
         templateExtension: 'html'
         hook: 'hook.js'
-).export module
 
-vows.describe('loadDefaultSettings').addBatch(
   'when loading default settings':
     topic: ->
       command.loadDefaultSettings({})
@@ -30,4 +31,13 @@ vows.describe('loadDefaultSettings').addBatch(
         namespace: 'window'
         templateExtension: 'html'
         hook: 'fusion_hooks.js'
+
+  'when loading test hooks':
+    topic: ->
+      command.loadHooks 'test/fixtures/hooks.js', fusion
+    'compileTemplate method should return a test string': (topic) ->
+      assert.isString topic.compileTemplate("")
+      assert.equal topic.compileTemplate(""), "hook test"
+    teardown: ->
+      fusion.compileTemplate = compileTemplate
 ).export module
