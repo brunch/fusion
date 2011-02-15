@@ -15,7 +15,6 @@ helpers     = require './helpers'
 SWITCHES = [
   ['-v', '--version',                     'display fusion version']
   ['-h', '--help',                        'display this help message']
-  ['-i', '--input [DIR]',                 'set input path of templates']
   ['-o', '--output [FILE]',               'set output path of templates']
   ['-k', '--hook [FILE]',                 'set path to a js file to hook in your own compile function']
   ['-n', '--namespace [VALUE]',           'set export namespace']
