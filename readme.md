@@ -118,9 +118,13 @@ You can change anything in the templates, refresh the index.html and see the new
 
 Feel free to make a pull request or contact me on Twitter @nikgraf.
 
+To compile src files to lib use
+
+    cake watch
+
 ### Tests
 
-    vows --spec test/*.coffee
+    cake test
 
 ## Thanks
 
@@ -130,6 +134,8 @@ Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/)
 
 ## TODO
 
+* create load settings method and export it - to run it easily without cli
+* optimize for eco
 * !!! add tests for hooks
 * watch somehow does not work with Textmate - any pointers?
 * output file - mkdirs or warn if directory doesn't exist
