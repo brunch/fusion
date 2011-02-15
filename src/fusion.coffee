@@ -48,8 +48,8 @@ exports.generateOutput = ->
     if stat.isDirectory()
       exports.output.push exports.createDirectoryObject(source, dirPrefix)
     else
-      compiledContent = exports.compileTemplate(fs.readFileSync(source, 'utf8'))
-      exports.output.push exports.createTemplateObject(compiledContent, source, dirPrefix)
+      templateContent = fs.readFileSync(source, 'utf8')
+      exports.output.push exports.createTemplateObject(templateContent, source, dirPrefix)
 
 # Initializes a namespace.
 # example: app/frontend/templates will start at templates = {}
@@ -60,10 +60,14 @@ exports.createDirectoryObject = (source, directoryPrefix) ->
 
 # Returns a string which assigns the content to the namespace.
 exports.createTemplateObject = (content, source, directoryPrefix) ->
+  "#{exports.templateNamespace(source, directoryPrefix)} = #{exports.compileTemplate(content)};"
+
+# Generates namespace for template file
+exports.templateNamespace = (source, directoryPrefix) ->
   namespace = source.replace directoryPrefix, ''
   namespace = namespace.match( new RegExp("^(.*)\.#{exports.settings.templateExtension}$"), 'a')[1]
   namespace = namespace.replace /\//g, '.'
-  "#{exports.settings.namespace}.#{namespace} = #{content};"
+  "#{exports.settings.namespace}.#{namespace}"
 
 # Escapes newline and single quote characters cause they would break our generated js.
 exports.compileTemplate = (content) ->
