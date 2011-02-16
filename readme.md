@@ -107,6 +107,17 @@ Hint: Eco 1.0.2 yet doesn't provide options for compile, please use a master che
 * output file: "templates.js"
 * hook file: "fusion_hooks.js"
 
+### require('fusion');
+
+For more flexability you can require fusion and run it by your own without the command-line interface.
+
+    var fusion = require('fusion');
+    var settings;
+    settings = fusion.loadSettingsFromFile('settings.yaml');
+    settings = fusion.loadDefaultSettings(settings);
+    settings.watch = true;
+    fusion.run(settings);
+
 ### Demo
 
 You can see it running by switching to demo folder and run it with watch option.
@@ -137,7 +148,6 @@ Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/)
 
 ## TODO
 
-* create load settings method and export it - to run it easily without cli
 * watch somehow does not work with Textmate - any pointers?
 * output file - mkdirs or warn if directory doesn't exist
 * replace optparser (mabey nomnom?)
