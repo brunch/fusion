@@ -1,7 +1,7 @@
 {
   "name":         "fusion",
   "description":  "Merge Files into Javascript Namespace",
-  "version":      "0.0.5",
+  "version":      "0.0.6",
   "keywords":     ["jst", "templates", "namespace", "merge", "fusion"],
   "homepage":     "http://deck.cc/",
   "author":       "Nik Graf @nikgraf",

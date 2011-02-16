@@ -9,7 +9,7 @@ watcher   = require 'watch'
 yaml      = require 'yaml'
 
 # The current fusion version number.
-exports.VERSION = '0.0.5'
+exports.VERSION = '0.0.6'
 
 # Exportet objects share by several functions.
 # Output and Sources are public for future improvements on caching content.
