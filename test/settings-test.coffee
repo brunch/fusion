@@ -2,15 +2,14 @@ require.paths.unshift __dirname + "/../src"
 
 vows    = require 'vows'
 assert  = require 'assert'
-command = require 'command'
 fusion  = require 'fusion'
 
 compileTemplate = fusion.compileTemplate
 
-vows.describe('command-line interface').addBatch(
+vows.describe('load and setup settings').addBatch(
   'when loading settings from a file':
     topic: ->
-      command.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
+      fusion.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
 
     'it should return a settings object': (topic) ->
       assert.deepEqual topic,
@@ -22,7 +21,7 @@ vows.describe('command-line interface').addBatch(
 
   'when loading default settings':
     topic: ->
-      command.loadDefaultSettings({})
+      fusion.loadDefaultSettings({})
 
     'it should return a settings object with default values': (topic) ->
       assert.deepEqual topic,
@@ -34,7 +33,8 @@ vows.describe('command-line interface').addBatch(
 
   'when loading test hooks':
     topic: ->
-      command.loadHooks 'test/fixtures/hooks.js', fusion
+      fusion.loadHooks 'test/fixtures/hooks.js', fusion
+
     'compileTemplate method should return a test string': (topic) ->
       assert.isString topic.compileTemplate("")
       assert.equal topic.compileTemplate(""), "hook test"

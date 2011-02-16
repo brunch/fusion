@@ -1,10 +1,12 @@
 # Fusion can be used via command-line tool or manually by calling run(settings).
 
 # External dependencies.
+_         = require 'underscore'
 fs        = require 'fs'
 path      = require 'path'
 helpers   = require './helpers'
 watcher   = require 'watch'
+yaml      = require 'yaml'
 
 # The current fusion version number.
 exports.VERSION = '0.0.5'
@@ -102,6 +104,39 @@ exports.watch = ->
       exports.mergeFiles()
     )
   )
+
+# Load settings from a settings file if available.
+exports.loadSettingsFromFile = (settings_file) ->
+  settings_file or= "settings.yaml"
+  try
+    stats = fs.statSync settings_file
+    currentSettings = yaml.eval fs.readFileSync(settings_file, 'utf8')
+  catch e
+    helpers.printLine "Couldn't find a settings file"
+    currentSettings = {}
+  currentSettings
+
+# Set some reasonable defaults if they haven't been defined.
+exports.loadDefaultSettings = (currentSettings) ->
+  currentSettings.namespace = "window" unless currentSettings.namespace
+  currentSettings.templateExtension = "html" unless currentSettings.templateExtension
+  currentSettings.input = "templates" unless currentSettings.input
+  currentSettings.output = "templates.js" unless currentSettings.output
+  currentSettings.hook = "fusion_hooks.js" unless currentSettings.hook
+  currentSettings
+
+# Load fusion hooks
+exports.loadHooks = (hook_file, currentFusion) ->
+  try
+    stats = fs.statSync hook_file
+    fileName = path.basename(hook_file)
+    hook_file = path.join path.dirname(fs.realpathSync(hook_file)), fileName
+    hooks = require(hook_file)
+    _.each hooks, (value, key) ->
+      currentFusion[key] = value
+  catch e
+    helpers.printLine "No hooks have been loaded."
+  currentFusion
 
 # Reset output and sources in case of remerging everthing.
 resetGlobals = ->

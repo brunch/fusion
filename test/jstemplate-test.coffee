@@ -4,7 +4,6 @@ vows    = require 'vows'
 assert  = require 'assert'
 fusion  = require 'fusion'
 fs      = require 'fs'
-command = require 'command'
 
 cleanUpFusion = ->
   fs.unlinkSync(fusion.settings.output)
@@ -15,7 +14,7 @@ cleanUpFusion = ->
 vows.describe('createTemplateObject').addBatch({
   'when building an namespace assigment':
     topic: ->
-      fusion.settings = command.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
+      fusion.settings = fusion.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
       fusion.createTemplateObject('Sunshine', 'templates/sunshine.html')
 
     'it should be a valid one': (topic) ->
@@ -35,7 +34,7 @@ vows.describe('createDirectoryObject').addBatch({
 vows.describe('writeOutputFile').addBatch({
   'when writing the output to the file':
     topic: ->
-      fusion.settings = command.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
+      fusion.settings = fusion.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
       fusion.settings.output = __dirname + '/test.js'
       fusion.output = ['a', 'b']
       fusion.writeOutputFile(this.callback)
@@ -50,7 +49,7 @@ vows.describe('writeOutputFile').addBatch({
 vows.describe('mergeFiles').addBatch({
   'when merging a folder':
     topic: ->
-      fusion.settings = command.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
+      fusion.settings = fusion.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
       fusion.mergeFiles(this.callback)
 
     'it should generate a valid js file': (topic) ->
@@ -77,7 +76,7 @@ vows.describe('compileTemplate').addBatch({
 vows.describe('templateNamespace').addBatch({
   'when generating namespace for a template':
     topic: ->
-      fusion.settings = command.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
+      fusion.settings = fusion.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
       fusion.templateNamespace 'templates/sunshine.html', ''
 
     'it should create a proper namespace': (topic) ->
