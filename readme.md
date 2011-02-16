@@ -89,11 +89,14 @@ For example to use eco's precompiling for our templates we can create a file
 fusion_hooks.js which contains something like this
 
     var eco = require('eco');
-    exports.compileTemplate = function(content) {
-      return eco.compile(content);
+    var fusion = require('fusion');
+    exports.createTemplateObject = function(content, source, directoryPrefix) {
+      return eco.compile(content, { identifier: fusion.templateNamespace(source, directoryPrefix)});
     };
 
 Thats all you need to add proper precompiling to your templates.
+
+Hint: Eco 1.0.2 yet doesn't provide options for compile, please use a master checkout
 
 ### Default Settings
 
@@ -135,7 +138,6 @@ Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/)
 ## TODO
 
 * create load settings method and export it - to run it easily without cli
-* optimize for eco
 * watch somehow does not work with Textmate - any pointers?
 * output file - mkdirs or warn if directory doesn't exist
 * replace optparser (mabey nomnom?)
