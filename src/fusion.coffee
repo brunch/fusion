@@ -118,7 +118,7 @@ exports.loadSettingsFromFile = (settings_file) ->
 
 # Set some reasonable defaults if they haven't been defined.
 exports.loadDefaultSettings = (currentSettings) ->
-  currentSettings.namespace = "this" unless currentSettings.namespace
+  currentSettings.namespace = "window" unless currentSettings.namespace
   currentSettings.templateExtension = "html" unless currentSettings.templateExtension
   currentSettings.input = "templates" unless currentSettings.input
   currentSettings.output = "templates.js" unless currentSettings.output
