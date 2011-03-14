@@ -80,7 +80,7 @@ exports.compileTemplate = (content) ->
 # Merging all the output commands in an anonymous function and writes it to a file
 exports.writeOutputFile = (callback) ->
   templates = exports.output.join('')
-  templates = "(function(){#{templates}})();"
+  templates = "(function(){#{templates}}).call(this);"
 
   fs.writeFile(exports.settings.output, templates, (err) ->
     helpers.printLine "Compiled files"

@@ -1,1 +1,1 @@
-./../../bin/fusion --watch
+./../../bin/fusion
