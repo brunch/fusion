@@ -41,7 +41,7 @@ vows.describe('writeOutputFile').addBatch({
 
     'it should generate a valid file': (topic) ->
       content = fs.readFileSync(fusion.settings.output, "utf8")
-      assert.equal content, "(function(){ab})();"
+      assert.equal content, "(function(){ab}).call(this);"
     teardown: ->
       cleanUpFusion()
 }).export module
@@ -54,7 +54,7 @@ vows.describe('mergeFiles').addBatch({
 
     'it should generate a valid js file': (topic) ->
       content = fs.readFileSync(fusion.settings.output, "utf8")
-      assert.equal content, "(function(){window.templates = {};window.templates.a = '<h1>a</h1>\\n';window.templates.b = {};window.templates.c = '<p>c</p>\\n';window.templates.b.b = {};window.templates.b.b.b = '<h2>b</h2>\\n';})();"
+      assert.equal content, "(function(){window.templates = {};window.templates.a = '<h1>a</h1>\\n';window.templates.b = {};window.templates.c = '<p>c</p>\\n';window.templates.b.b = {};window.templates.b.b.b = '<h2>b</h2>\\n';}).call(this);"
     teardown: ->
       cleanUpFusion()
 }).export module
