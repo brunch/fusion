@@ -20,7 +20,7 @@ fusion would compile it to
       window.templates.notes = {};
       window.templates.notes.overview = '<content of overview.html>';
       window.templates.notes.detail = '<content of detail.html>';
-    })();
+    }).call(this);
 
 ## Installation
 
@@ -148,6 +148,8 @@ Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/)
 
 ## TODO
 
+* add cake to rerender all the the demos
+* namespace should follow js naming convetions new_project.eco should become newProject
 * watch somehow does not work with Textmate - any pointers?
 * output file - mkdirs or warn if directory doesn't exist
 * replace optparser (mabey nomnom?)
