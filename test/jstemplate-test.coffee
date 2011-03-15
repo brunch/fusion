@@ -62,23 +62,27 @@ vows.describe('mergeFiles').addBatch({
 vows.describe('compileTemplate').addBatch({
   'when compiling a template with single quotes':
     topic: -> fusion.compileTemplate("Steve's Test")
-
     'it should escape them': (topic) ->
       assert.equal topic, "'Steve\\'s Test'"
 
   'when compiling a template with newline chars':
     topic: -> fusion.compileTemplate("Test\nTest")
-
     'it should escape them': (topic) ->
       assert.equal topic, "'Test\\nTest'"
 }).export module
 
-vows.describe('templateNamespace').addBatch({
-  'when generating namespace for a template':
+vows.describe('generating namespace for a template').addBatch({
+  'when using a file in a templates folder':
     topic: ->
       fusion.settings = fusion.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
       fusion.templateNamespace 'templates/sunshine.html', ''
-
-    'it should create a proper namespace': (topic) ->
+    'it should create a proper namespace including the folder': (topic) ->
       assert.equal topic, "window.templates.sunshine"
+
+  'when using files and folder with underscores it should camel case them':
+    topic: ->
+      fusion.settings = fusion.loadSettingsFromFile(__dirname + "/fixtures/settings.yaml")
+      fusion.templateNamespace 'templates/pirate_island/boat_detail.html', ''
+    'it should create a proper namespace including the folder': (topic) ->
+      assert.equal topic, "window.templates.pirateIsland.boatDetail"
 }).export module

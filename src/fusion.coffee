@@ -65,10 +65,12 @@ exports.createTemplateObject = (content, source, directoryPrefix) ->
   "#{exports.templateNamespace(source, directoryPrefix)} = #{exports.compileTemplate(content)};"
 
 # Generates namespace for template file
+# It generates camel case namespaces out of files and folders used underscore naming coneventions
 exports.templateNamespace = (source, directoryPrefix) ->
   namespace = source.replace directoryPrefix, ''
   namespace = namespace.match( new RegExp("^(.*)\.#{exports.settings.templateExtension}$"), 'a')[1]
   namespace = namespace.replace /\//g, '.'
+  namespace = helpers.underscoreToCamelCase(namespace)
   "#{exports.settings.namespace}.#{namespace}"
 
 # Escapes newline and single quote characters cause they would break our generated js.

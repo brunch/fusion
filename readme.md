@@ -22,6 +22,14 @@ fusion would compile it to
       window.templates.notes.detail = '<content of detail.html>';
     }).call(this);
 
+***camel case*** Fusion generates camel case namespaces. So if you have
+
+    templates/task_list/new_comment.html
+
+it will generate
+
+    templates.taskList.newComment.html
+
 ## Installation
 
     npm install fusion
@@ -34,7 +42,7 @@ You can run the script to compile templates via
 
     fusion [options] [<directory>]
 
-Optional use --watch to watch changes in the given directory.
+Optional use `--watch` to watch changes in the given directory.
 You don't need to set a directory. You can leave it out and use
 the one from settings or even fusion's default which is 'templates'.
 
@@ -66,8 +74,8 @@ set path of the hook file
 
 ### Settings file
 
-All options except "--watch" and "--config" can be set in the settings file.
-Unless --config is defined the script will search for "settings.yaml"
+All options except `--watch` and `--config` can be set in the settings file.
+Unless `--config` is defined the script will search for "settings.yaml"
 in the current directory.
 
 Possible settings are
@@ -149,7 +157,6 @@ Special Thanks to the [CoffeeScript](http://jashkenas.github.com/coffee-script/)
 ## TODO
 
 * add cake to rerender all the the demos
-* namespace should follow js naming convetions new_project.eco should become newProject
 * watch somehow does not work with Textmate - any pointers?
 * output file - mkdirs or warn if directory doesn't exist
 * replace optparser (mabey nomnom?)
