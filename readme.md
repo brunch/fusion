@@ -28,7 +28,7 @@ fusion would compile it to
 
 it will generate
 
-    templates.taskList.newComment.html
+    templates.taskList.newComment
 
 ## Installation
 
